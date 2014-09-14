@@ -375,8 +375,15 @@ static CPTAnimation *instance = nil;
                             free(buffer);
                         }
                         else {
-                            IMP setterMethod = [boundObject methodForSelector:boundSetter];
-                            setterMethod(boundObject, boundSetter, tweenedValue);
+                            //fix crash https://github.com/core-plot/core-plot/commit/04af8f11fa4a07f7616bced2b3598d533aa5c369
+//                            IMP setterMethod = [boundObject methodForSelector:boundSetter];
+//                            setterMethod(boundObject, boundSetter, tweenedValue);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+                            id<NSObject> theObject = boundObject;
+                            [theObject performSelector:boundSetter withObject:tweenedValue];
+#pragma clang diagnostic pop
+
                         }
 
                         if ( [animationDelegate respondsToSelector:@selector(animationDidUpdate:)] ) {
