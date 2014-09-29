@@ -28,4 +28,5 @@ Pod::Spec.new do |s|
   s.prepare_command = <<-CMD
     dtrace -h -s framework/TestResources/CorePlotProbes.d -o framework/Source/CorePlotProbes.h
   CMD
+  s.requires_arc = false
 end
