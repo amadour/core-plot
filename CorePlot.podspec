@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'CorePlot'
-  s.version  = '1.5.2'
+  s.version  = '1.5.1'
   s.license  = 'BSD'
   s.summary  = 'Cocoa plotting framework for Mac OS X and iOS.'
   s.homepage = 'https://github.com/core-plot'
